@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<!-- Icons -->
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta2/css/all.css"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet" href="/css/header.css">
+	<link rel="stylesheet" href="/css/prod_form.css">
+
+	<title>Medicare | Edit Product</title>
+
+	<style>
+		td {
+		  vertical-align: top;
+		}
+	</style>
+
+</head>
+
+<body>
+
+
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-info " style="padding-left: 1%; padding-bottom: -10px;">
+		<div class="navbar-brand">
+			<a th:href="@{/dashboardAdmin}">
+				<img src="/images/Logo_2_bg_removed.png" width="35%">
+			</a>
+		</div>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" th:href="@{/admin/addCategoryPage}">Add Category <span
+							class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" th:href="@{/admin/addProductPage}">Add Product</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" th:href="@{/dashboardAdmin}">View All Products</a>
+				</li>
+			</ul>
+
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+					<span class="nav-link"
+						style="font-family:Georgia, 'Times New Roman', Times, serif; font-weight: 600;">[Admin
+						Mode]</span>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link spc" th:href="@{/logout}">Logout</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<!-- NAVBAR -->
+	<!-- / HEADER -->
+	
+	<!--FORM-->
+	<div class="container p-5">
+		<div class="card">
+			<div class="card-body">
+				<table>
+					<tr>
+						<th colspan="2">
+							<h4 class="text-center text-secondary">Edit Product Details</h4>
+						</th>
+					</tr>
+					<tr>
+						<form th:action="@{/product/updateProductInfo}" method="POST" enctype="multipart/form-data">
+						<td>
+							<div class="form-group mt-3">
+								<label>Product ID</label>
+								<input type="text" class="form-control" name="product_id" th:value="${selectedProduct.product_id}" readonly>
+							</div>
+							
+							<div class="form-group mt-3">
+								<label>Product Name</label>
+								<input type="text" class="form-control" name="productName" th:value="${selectedProduct.productName}">
+							</div>
+
+							<div class="form-group mt-3 ">
+								<label>Product Brand</label>
+								<input type="text" class="form-control" name="productBrand" th:value="${selectedProduct.productBrand}">
+							</div>
+
+							<div class="form-group">
+								<label>Price</label>
+								<input type="number" class="form-control" name="productPrice" th:value="${selectedProduct.productPrice}">
+							</div>
+
+							<div class="form-group  ">
+								<label>Quantity</label>
+								<input type="number" class="form-control" name="productQuantity" th:value="${selectedProduct.productQuantity}">
+							</div>
+							
+							<div class="form-group">
+								<label>Description</label>
+								<textarea class="form-control" rows="4" cols="50" style="resize: none; float: inline-start;" 
+										  name="productDescription"
+										  th:text="${selectedProduct.productDescription}"></textarea>
+							</div>
+
+							<br>
+						</td>
+
+						<td>
+							<div class="card">
+								<div class="card-body text-center">
+									<h5 class="text-secondary">Product Image</h5>
+									<img alt="image" th:src="*{'data:image/jpeg;base64,'+{selectedProduct.productImage}}" width="200px"></img>
+								</div>
+							</div>
+							
+							<br>
+							
+							<label for="categoryName" class="mt-1">Category Name</label>
+								<select class="form-control mb-4" id="category" name="category.id">
+									<option>-- Select --</option>
+									<option th:value="${selectedProduct.category.categoryId}" th:text="${selectedProduct.category.categoryName}" selected></option>
+									<option th:each="category : ${listCat}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+								</select><br />
+
+							<div class="custom-file ">
+								<label for="productImage">Change Product Image</label>
+								<input type="file" class="form-control-file" name="productImage">
+							</div>
+						</td>
+
+					<tr>
+						<td colspan="2">
+							<button class="btn btn-secondary btn-block">Update Product</button>
+						</td>
+					</tr>
+					</form>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<!--FORM-->
+
+
+	<!-- Footer -->
+	 <footer class="bg-info" style="position: fixed;left: 0; bottom: 0;width: 100%;color: white; padding-left: 1%;">
+	    <div>
+	      All rights reserved @ Medicare
+	      <div style="float: right;">
+	        <a href="/facebook">
+				<i class="fa-2x fa-brands fa-facebook" style="color: #e5e7eb; width: 32px;"></i>
+			</a>
+			<a href="/instagram">
+				<i class="fa-2x fa-brands fa-instagram" style="color: #e5e7eb;"></i>
+			</a>
+	      </div>
+	    </div>
+  	</footer>
+
+	<!-- JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

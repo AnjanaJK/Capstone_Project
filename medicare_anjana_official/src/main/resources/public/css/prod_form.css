@@ -1,0 +1,22 @@
+/* Custom CSS to display label and input as block elements */
+table {
+    width: 100%;
+}
+
+
+td {
+    width: 50%;
+    padding: 20px;
+}
+
+.form-group label {
+    display: block;
+}
+
+.form-group input {
+    display: block;
+    /* You can adjust the width, margin, and other styles as needed */
+    width: 100%;
+    margin-top: 5px;
+    /* Add some spacing between label and input */
+}

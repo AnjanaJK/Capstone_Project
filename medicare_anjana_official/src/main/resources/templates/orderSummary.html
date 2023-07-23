@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+</html>
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<!-- Icons -->
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v6.0.0-beta2/css/all.css"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet" href="/css/header.css">
+
+	<title>Medicare | Order Summary</title>
+
+
+</head>
+
+<body>
+
+
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-info " style="padding-left: 1%; padding-bottom: -10px;">
+		<div class="navbar-brand">
+			<a th:href="@{/dashboardCustomer}">
+				<img src="/images/Logo_2_bg_removed.png" width="35%">
+			</a>
+		</div>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="/contact">Contact</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item active">
+	                <span class="nav-link" style="color: rgb(15, 42, 15); font-weight: bolder; margin-left: -15%;">
+						Name: <u><span th:text="${session.username}"></span></u>
+	                </span>
+	            </li>
+	            <li class="nav-item active">
+	                <a class="nav-link" th:href="@{/cart/myCart}" style=" margin-left: -15%;">
+						<i class="fa-solid fa-cart-shopping"></i>
+						<span>(<span th:text="${totalItems}"></span>)</span>
+					</a>
+	            </li>
+	            <li class="nav-item active">
+	                <a class="nav-link spc" th:href="@{/myorders}">My Orders</a>
+	            </li>	            
+	            <li class="nav-item active">
+	                <a class="nav-link btn btn-danger" th:href="@{/logout}">Logout</a>
+	            </li>
+			</ul>
+
+		</div>
+	</nav>
+	<!-- NAVBAR -->
+
+	
+    <div class="container mt-3">
+		<!-- MESSAGE -->
+		<div th:if="${session.msg}">
+			<div class="alert alert-info" role="alert" th:text="${session.msg}"></div>
+			<th:block th:text="${@sessionHelper.removeMessagefromSession()}"></th:block>
+		</div>
+		<!-- MESSAGE -->
+        <div class="card">
+            <div class="card-body">
+                <h2>Order Complete</h2>
+                <p> Your order has been successfully placed.</p><br>
+                
+                It will be delivered in the next 2 working days.<br>
+
+                <a th:href="@{/dashboardCustomer}">
+                    <button class="btn btn-info mt-5">
+                        <i class="fa-solid fa-store"></i> Home
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+	<!-- Footer -->
+	<footer class="bg-info" style="position: fixed;left: 0; bottom: 0;width: 100%;color: white; padding-left: 1%;">
+		<div>
+			All rights reserved @ Medicare
+			<div style="float: right;">
+				<a href="/facebook">
+					<i class="fa-2x fa-brands fa-facebook" style="color: #e5e7eb; width: 32px;"></i>
+				</a>
+				<a href="/instagram">
+					<i class="fa-2x fa-brands fa-instagram" style="color: #e5e7eb;"></i>
+				</a>
+
+
+			</div>
+		</div>
+	</footer>
+
+	<!-- JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

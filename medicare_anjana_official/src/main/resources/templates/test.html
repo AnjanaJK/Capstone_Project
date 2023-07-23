@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST</title>
+</head>
+<body>
+    <h1>test file</h1>
+    <!-- MESSAGE -->
+	<div th:if="${session.msg}">
+		<div class="alert alert-success" role="alert" th:text="${session.msg}"></div>
+		<th:block th:text="${@sessionHelper.removeMessagefromSession()}"></th:block>
+	</div>
+</body>
+</html>
